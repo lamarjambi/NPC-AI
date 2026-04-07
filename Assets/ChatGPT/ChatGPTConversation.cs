@@ -6,7 +6,6 @@ namespace ChatGPTWrapper {
 
     public class ChatGPTConversation : MonoBehaviour
     {
-        [SerializeField]
         private string _apiKey = null;
 
         public enum Model {
@@ -45,6 +44,10 @@ namespace ChatGPTWrapper {
 
         public void Init()
         {
+            _apiKey = System.IO.File.ReadAllText(
+                Application.dataPath + "/secret.txt"
+            ).Trim();
+
             _reqHeaders = new List<(string, string)>
             { 
                 ("Authorization", $"Bearer {_apiKey}"),

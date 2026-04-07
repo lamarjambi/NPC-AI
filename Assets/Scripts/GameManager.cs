@@ -41,31 +41,40 @@ public class GameManager : MonoBehaviour
         chatPanel.SetActive(true);
 
         // Send the opening greeting
-        activeChatGPT.SendToChatGPT("{\"player_said\":\"Hello! Who are you?\"}");
+        activeChatGPT.SendToChatGPT("{\"player_said\":\"Hi!\", \"instructions\":\"Give a short greeting only, 1-2 sentences max. Save the details for later.\"}");
     }
 
     public void ReceiveChatGPTReply(string message)
     {
+        string displayText = message; // fallback: show raw reply if JSON parse fails
+
         try
         {
-            if (!message.EndsWith("}"))
+            // Strip markdown code fences (e.g. ```json ... ```)
+            if (message.Contains("```"))
             {
-                if (message.Contains("}"))
-                    message = message.Substring(0, message.LastIndexOf("}") + 1);
-                else
-                    message += "}";
+                int newline = message.IndexOf('\n', message.IndexOf("```"));
+                int fenceEnd = message.LastIndexOf("```");
+                if (newline >= 0 && fenceEnd > newline)
+                    message = message.Substring(newline + 1, fenceEnd - newline - 1).Trim();
             }
-            message = message.Replace("\\", "\\\\");
-            message = message.Replace("\\\\\"", "\\\"");
+
+            // Extract the first {...} block in case of surrounding text
+            int jsonStart = message.IndexOf('{');
+            int jsonEnd = message.LastIndexOf('}');
+            if (jsonStart >= 0 && jsonEnd > jsonStart)
+                message = message.Substring(jsonStart, jsonEnd - jsonStart + 1);
 
             NPCJSONReceiver npcJSON = JsonUtility.FromJson<NPCJSONReceiver>(message);
-            tX_AIReply.text = "<color=#ff7082>" + activeCharacterName + ": </color>" + npcJSON.reply_to_player;
+            if (npcJSON != null && npcJSON.reply_to_player != null)
+                displayText = npcJSON.reply_to_player;
         }
         catch (Exception e)
         {
-            Debug.Log(e.Message);
-            tX_AIReply.text = "<color=#ff7082>" + activeCharacterName + ": </color>" + "...";
+            Debug.Log("JSON parse failed: " + e.Message);
         }
+
+        tX_AIReply.text = "<color=#ff7082>" + activeCharacterName + ": </color>" + displayText;
     }
 
     public void SubmitChatMessage()
@@ -83,6 +92,6 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButtonUp("Submit")) SubmitChatMessage();
+        if (Input.GetKeyUp(KeyCode.Return) || Input.GetKeyUp(KeyCode.KeypadEnter)) SubmitChatMessage();
     }
 }

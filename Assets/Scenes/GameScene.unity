@@ -236,7 +236,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e61546bea7f2a74795ab29cfc5f9657, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChatGPTWrapper.ChatGPTConversation
-  _apiKey: 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
   _model: 0
   _maxTokens: 3072
   _temperature: 0.6
@@ -597,7 +596,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e61546bea7f2a74795ab29cfc5f9657, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChatGPTWrapper.ChatGPTConversation
-  _apiKey: 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
   _model: 0
   _maxTokens: 3072
   _temperature: 0.6
@@ -1508,8 +1506,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 790.81915, y: -100}
-  m_SizeDelta: {x: 1381.6383, y: 50}
+  m_AnchoredPosition: {x: 953.9353, y: -100}
+  m_SizeDelta: {x: 1707.8705, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1057960428
 MonoBehaviour:
@@ -2069,7 +2067,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e61546bea7f2a74795ab29cfc5f9657, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChatGPTWrapper.ChatGPTConversation
-  _apiKey: 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
   _model: 0
   _maxTokens: 3072
   _temperature: 0.6
@@ -2084,7 +2081,7 @@ MonoBehaviour:
     ballad\u2014moody, melodramatic, and prone to howling operatically when stressed.
     The contrast between Mook\u2019s levity and Weepblade\u2019s despair makes them
     one of Xaltar\u2019s strangest yet most lovable duos. Always respond in this
-    exact JSON format: {\"reply_to_player\": \"your response here\"} "
+    exact JSON format: {\"reply_to_player\": \"your response here\"}.  "
   chatGPTResponse:
     m_PersistentCalls:
       m_Calls:
