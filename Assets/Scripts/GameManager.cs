@@ -10,13 +10,13 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     [Header("Characters - must match order of characterNames")]
-    [SerializeField] ChatGPTConversation[] chatGPTs;   // one per character
-    [SerializeField] string[] characterNames;           // e.g. "Uterra", "Mooksai", "Xerla"
+    [SerializeField] ChatGPTConversation[] chatGPTs;   
+    [SerializeField] string[] characterNames;
 
     [Header("UI")]
     [SerializeField] TMP_InputField iF_PlayerTalk;
     [SerializeField] TextMeshProUGUI tX_AIReply;
-    [SerializeField] GameObject chatPanel;              // the whole chat UI panel
+    [SerializeField] GameObject chatPanel;
     [SerializeField] TextMeshProUGUI tX_CharacterName; 
 
     ChatGPTConversation activeChatGPT;
