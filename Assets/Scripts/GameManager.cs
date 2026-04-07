@@ -93,5 +93,6 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyUp(KeyCode.Return) || Input.GetKeyUp(KeyCode.KeypadEnter)) SubmitChatMessage();
+        if (Input.GetKeyUp(KeyCode.Escape)) CloseChat();
     }
 }
